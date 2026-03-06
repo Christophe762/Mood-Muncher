@@ -84,3 +84,35 @@ button:hover {
   transform: scale(1.05);
   box-shadow: 0 5px 15px rgba(255,111,97,0.5);
 }
+
+/* History gallery */
+.history-gallery {
+  width: 100%;
+}
+
+.history-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.history-card {
+  background: #fff0f5;
+  border: 2px dashed #ff6f61;
+  border-radius: 16px;
+  padding: 10px;
+  max-width: 180px;
+  text-align: center;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.history-card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 6px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
