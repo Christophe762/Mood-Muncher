@@ -10,6 +10,7 @@ Thumbs.db
 # Angular
 **/dist
 **/out-tsc
+.angular/
 
 # Environment files
 **/.env
