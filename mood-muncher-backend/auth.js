@@ -1,17 +1,15 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 const authMiddleware = (req, res, next) => {
   try {
-    // Get token from Authorization header
     const authHeader = req.headers.authorization;
     if (!authHeader) return res.status(401).json({ error: 'No token provided' });
 
-    const token = authHeader.split(' ')[1]; // Bearer <token>
+    const token = authHeader.split(' ')[1];
     if (!token) return res.status(401).json({ error: 'No token provided' });
 
-    // Verify token
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-    req.userId = payload.userId; // attach userId to request
+    req.userId = payload.userId;
     next();
   } catch (err) {
     console.error(err);
@@ -19,4 +17,4 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-module.exports = authMiddleware;
+export default authMiddleware;
