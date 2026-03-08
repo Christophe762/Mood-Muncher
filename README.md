@@ -64,9 +64,9 @@ The project structure is intentionally minimal to make experimentation easier.
 ```
 mood-muncher
 │
-├── frontend/        # Angular application
+├── mood-muncher-frontend/        # Angular application
 │
-├── backend/         # Node + Express API
+├── mood-muncher-backend/         # Node + Express API
 │
 └── README.md
 ```
