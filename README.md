@@ -1,12 +1,13 @@
 # Mood Muncher 🍔🎨
 
 **Mood Muncher** is a small experimental web application that generates **absurd meal suggestions** based on a user's mood.
+
 You enter how you feel, and the app returns a **funny, cartoon-style food idea** that matches your emotional state.
 
 Example:
 
-> Mood: *Existential dread*
-> Meal suggestion: *A bowl of screaming spaghetti topped with tiny crying meatballs.*
+> **Mood:** *Existential dread*
+> **Meal suggestion:** *A bowl of screaming spaghetti topped with tiny crying meatballs.*
 
 The project uses a **simple architecture** so the focus is not on complex application logic, but on **infrastructure, deployment, and DevOps experimentation**.
 
@@ -42,20 +43,39 @@ Because the application itself is lightweight, it becomes easy to **iterate on i
 
 # Tech Stack ⚙️
 
-### Frontend
+## Frontend
 
 * Angular
 
-### Backend
+## Backend
 
 * Node.js
 * Express
 
-### Architecture
+## Database
 
-* Separate **frontend** and **backend** services
+* PostgreSQL
 
-The project structure is intentionally minimal to make experimentation easier.
+## Infrastructure
+
+* Docker
+* Docker Compose
+
+The application runs as **separate containerized services**, allowing experimentation with deployment strategies, scaling, and infrastructure automation.
+
+---
+
+# Architecture 🧱
+
+The application is composed of three services:
+
+* **Frontend** — Angular web interface
+* **Backend** — Node.js / Express API
+* **Database** — PostgreSQL
+
+The backend communicates with the PostgreSQL database to store and retrieve application data.
+
+Docker Compose orchestrates these services in a **local development environment**.
 
 ---
 
@@ -67,6 +87,13 @@ mood-muncher
 ├── mood-muncher-frontend/        # Angular application
 │
 ├── mood-muncher-backend/         # Node + Express API
+│
+├── db/                           # Database initialization
+│   └── sql.init                  # PostgreSQL initialization script
+│
+├── docker-compose.yml            # Multi-container local environment
+│
+├── .env.example                  # Example environment variables
 │
 └── README.md
 ```
@@ -80,24 +107,110 @@ Each component is kept independent so it can easily be:
 
 ---
 
-# Why This Project Exists 🧪
+# Environment Variables 🔐
 
-Many portfolio projects focus heavily on application features and complexity.
-This project takes the opposite approach.
+The project uses environment variables for configuration.
 
-**Mood Muncher is intentionally simple so that the infrastructure around it can become complex.**
+An example configuration file is provided:
 
-It serves as a sandbox for experimenting with topics such as:
+```
+.env.example
+```
 
-* Docker and container orchestration
-* CI/CD pipelines
-* reverse proxies and load balancing
-* automated deployments
-* monitoring and logging
-* cloud platforms
-* resilience and fault tolerance
+Create your local configuration file:
 
-Over time, the surrounding infrastructure may become significantly more sophisticated than the application itself.
+```
+cp .env.example .env
+```
+
+You can then adjust the values depending on your environment.
+
+---
+
+# Services 📦
+
+| Service    | Port | Description            |
+| ---------- | ---- | ---------------------- |
+| Frontend   | 4200 | Angular user interface |
+| Backend    | 3000 | Express API            |
+| PostgreSQL | 5432 | Application database   |
+
+---
+
+# Getting Started (Recommended) 🐳
+
+The easiest way to run the project locally is using **Docker Compose**.
+
+### 1. Clone the repository
+
+```
+git clone <repo-url>
+cd mood-muncher
+```
+
+### 2. Create the environment file
+
+```
+cp .env.example .env
+```
+
+### 3. Start the application
+
+```
+docker compose up --build
+```
+
+Once the containers are running, open:
+
+```
+http://localhost:4200
+```
+
+---
+
+# Database Initialization 🗄️
+
+The PostgreSQL database is automatically initialized using the SQL script located in:
+
+```
+db/sql.init
+```
+
+This script runs when the PostgreSQL container is created and can be used to:
+
+* create tables
+* insert seed data
+* define initial schema
+
+---
+
+# Running Without Docker (Optional) 💻
+
+You can also run the services manually.
+
+## Backend
+
+```
+cd mood-muncher-backend
+npm install
+npm start
+```
+
+## Frontend
+
+```
+cd mood-muncher-frontend
+npm install
+ng serve
+```
+
+Make sure you also have a **PostgreSQL instance running locally** and configured according to your `.env` variables.
+
+Then open:
+
+```
+http://localhost:4200
+```
 
 ---
 
@@ -117,40 +230,7 @@ This project may be used to experiment with:
 * feature flags
 * canary deployments
 
-The exact infrastructure may evolve as the project grows.
-
----
-
-# Getting Started (Development) 💻
-
-Clone the repository:
-
-```
-git clone <repo-url>
-cd mood-muncher
-```
-
-Run the backend:
-
-```
-cd backend
-npm install
-npm start
-```
-
-Run the frontend:
-
-```
-cd frontend
-npm install
-ng serve
-```
-
-Then open:
-
-```
-http://localhost:4200
-```
+The surrounding infrastructure may evolve over time.
 
 ---
 
@@ -160,6 +240,4 @@ The guiding principle of this project is:
 
 > **Simple application, complex infrastructure.**
 
-By keeping the application small and playful, the project becomes a flexible environment for learning and experimenting with modern DevOps practices.
-
----
+By keeping the application small and playful, the project becomes a flexible environment for learning and experimenting with **modern DevOps practices**.
