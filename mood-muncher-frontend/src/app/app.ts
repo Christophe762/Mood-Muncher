@@ -99,17 +99,17 @@ export class App implements OnInit {
   error: string = '';
 
   // API endpoints
-  private apiUrl = 'http://localhost:3000/predict-snack-and-image';
-  private historyUrl = 'http://localhost:3000/history';
-  private loginUrl = 'http://localhost:3000/login';
-  private signupUrl = 'http://localhost:3000/signup';
+  private apiUrl = `api/predict-snack-and-image`;
+  private historyUrl = `api/history`;
+  private loginUrl = `api/login`;
+  private signupUrl = `api/signup`;
 
   private messages = [
     'Generating your snack...',
     'Please wait, it may take a few minutes...'
   ];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.checkLocalStorage();
