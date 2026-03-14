@@ -1,0 +1,32 @@
+# Node modules (will be installed inside the Docker image)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Angular build output (will be rebuilt inside the image)
+dist/
+out-tsc/
+tmp/
+temp/
+
+# IDE/editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Environment files (if you don’t want secrets in the image)
+src/environments/environment*.ts
+
+# Git files
+.git/
+.gitignore
+
+# Docker local overrides/logs
+docker-compose.override.yml
+*.local
+*.log
